@@ -16,23 +16,19 @@ export const useFetchMovies = (url, page = 1) => {
         
         setState({data: null, loading: true, error: null});
         let data = {results: []};
-        while(page <= 10) {
+        while(page <= 500) {
             fetch(`${url}&page=${page++}`)
             .then(res => res.json())
             .then(resData => {
                 data.results = [...data.results, ...resData.results];
-                console.log(resData.results);
-                console.log(data);
                 if(isMounted.current) {
                     setState({
                         loading: false,
                         error: null,
-                        data: (state.data) ?
-                        {
-                            ...state.data,
-                            results: [...state.data.results, ...resData.results]
-                        } :
-                        {...resData},
+                        data: {
+                            ...resData,
+                            results: data.results
+                        },
                     });
                 }
             })
