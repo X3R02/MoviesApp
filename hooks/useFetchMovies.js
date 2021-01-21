@@ -16,7 +16,7 @@ export const useFetchMovies = (url, page = 1) => {
         
         setState({data: null, loading: true, error: null});
         let data = {results: []};
-        while(page <= 500) {
+        while(page <= 10) {
             fetch(`${url}&page=${page++}`)
             .then(res => res.json())
             .then(resData => {

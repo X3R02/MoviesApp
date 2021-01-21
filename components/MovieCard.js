@@ -1,14 +1,26 @@
 import React from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { getDimensions } from '../helpers/getDimensions';
 
-const MovieCard = ({url}) => {
+const MovieCard = ({url, navigate, movie}) => {
 
-    const image = { uri: `https://image.tmdb.org/t/p/w500${url}` };
+    const image = {
+      uri: `https://image.tmdb.org/t/p/w500${url}`,
+      cache: 'only-if-cached'
+    };
+
+    const navigateToMovie = () => {
+      navigate('Movie', movie);
+    };
     
     return (
         <View style={styles.container}>
-            <Image source={image} style={styles.image}/>
+          <TouchableOpacity
+            style={styles.container}
+            onPress={navigateToMovie}
+          >
+              <Image source={image} style={styles.image}/>
+          </TouchableOpacity>
         </View>
     );
 };
@@ -24,9 +36,6 @@ const styles = StyleSheet.create({
     width: dimensions.width / 2,
   },
   image: {
-    flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
     height: dimensions.height / 2,
     width: dimensions.width / 2,
   },

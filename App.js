@@ -20,7 +20,20 @@ export default function App() {
         <Stack.Screen
           name='Movie'
           component={MovieScreen}
-          options={headerOptions}  
+          options={{
+            headerStyle: {
+              backgroundColor: '#bf42f5',
+              height: 200,
+            },
+            headerTintColor: '#fff',
+            headerRight: () => (
+              <Button
+                onPress={() => alert('This is a button!')}
+                title='opciones'
+                color='#bf42f5'
+              />
+            ),
+          }}  
         />
       </Stack.Navigator>
     </NavigationContainer>
@@ -39,4 +52,8 @@ const headerOptions = {
       color='#1a1a1a'
     />
   ),
+};
+
+const headerMovieOptions = {
+
 };

@@ -4,7 +4,7 @@ import MovieCard from '../components/MovieCard';
 import { apiUrl } from '../data/utils';
 import { useFetchMovies } from '../hooks/useFetchMovies';
 
-const MainScreen = ({navigate}) => {
+const MainScreen = ({navigation: {navigate}}) => {
 
     const [movies, setMovies] = useFetchMovies(apiUrl);
     const [results, setResults] = useState(movies.data);
@@ -29,6 +29,7 @@ const MainScreen = ({navigate}) => {
                                 key={movie.id}
                                 url={movie.poster_path}
                                 navigate={navigate}
+                                movie={movie}
                             />
                         </View>
                     ))
