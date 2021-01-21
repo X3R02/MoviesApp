@@ -4,7 +4,7 @@ import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { getDimensions } from '../helpers/getDimensions';
 import { useOrientation } from '../hooks/useOrientation';
 
-const MovieCard = ({url, movie, stateMovie}) => {
+const MovieCard = React.memo(({url, movie, stateMovie}) => {
 
     const navigation = useNavigation();
     const orientation = useOrientation();
@@ -34,7 +34,7 @@ const MovieCard = ({url, movie, stateMovie}) => {
           </TouchableOpacity>
         </View>
     );
-};
+});
 
 const dimensions = getDimensions();
 const styles = StyleSheet.create({
