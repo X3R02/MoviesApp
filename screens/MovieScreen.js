@@ -19,10 +19,16 @@ const MovieScreen = ({route, navigation}) => {
                     source={image}
                     style={styles.image}
                 >
-                    <Text style={styles.text}>
+                    <Text style={styles.title}>
                         {params.original_title}
                     </Text>
+                    <Text style={styles.ratingText}>
+                        Rating: {params.vote_average}   Release Date: {params.release_date}
+                    </Text>
                 </ImageBackground>
+                <Text style={styles.sinopsis}>
+                    {params.overview}
+                </Text>
             </View>
         </ScrollView>
     );
@@ -42,15 +48,32 @@ const styles = StyleSheet.create({
     width: dimensions.width,
     backgroundColor: '#bf42f5',
   },
-  text: {
+  title: {
     color: '#fff',
     fontSize: 32,
-    height: 240,
+    height: 150,
     width: dimensions.width,
-    backgroundColor: '#000000a0',
+    backgroundColor: '#000000aa',
     textAlign: 'center',
     textAlignVertical: 'center',
+    paddingTop: 60,
   },
+  ratingText: {
+    color: '#fff',
+    fontSize: 20,
+    height: 90,
+    width: dimensions.width,
+    backgroundColor: '#000000aa',
+    textAlignVertical: 'center',
+    paddingLeft: 15,
+  },
+  sinopsis: {
+    color: '#717171',
+    fontSize: 20,
+    width: dimensions.width,
+    textAlignVertical: 'center',
+    padding: 25,
+  }
 });
 
 export default MovieScreen;
