@@ -27,8 +27,8 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: 'cover',
     justifyContent: 'center',
-    // height: dimensions.height / 2,
-    // width: dimensions.width / 2,
+    height: dimensions.height / 2,
+    width: dimensions.width / 2,
   },
 });
 

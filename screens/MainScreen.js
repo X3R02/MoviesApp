@@ -16,16 +16,11 @@ const MainScreen = ({navigate}) => {
                 {
                     movies.loading ?
                     <Text>Por favor espere</Text> :
-                    movies.data.results.map((movie, i) => (
-                        <View style={styles.containerImages}>
+                    movies.data.results.map((movie) => (
+                        <View>
                             <MovieCard
                                 key={movie.id}
                                 url={movie.poster_path}
-                                navigate={navigate}
-                            />
-                            <MovieCard
-                                key={movie[i + 1]?.id}
-                                url={movie[i + 1]?.poster_path}
                                 navigate={navigate}
                             />
                         </View>
@@ -35,8 +30,6 @@ const MainScreen = ({navigate}) => {
         </ScrollView>
     );
 };
-
-const dimensions = getDimensions();
 const styles = StyleSheet.create({
   container: {
     alignContent: 'stretch',
@@ -45,15 +38,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     flexDirection: 'row',
     justifyContent: 'center',
-    height: 'auto',
-    width: 'auto',
   },
-  containerImages: {
-    // flex: 1,
-    // flexDirection: 'row',
-    // height: dimensions.height,
-    // width: dimensions.width,
-  }
 });
 
 export default MainScreen;
