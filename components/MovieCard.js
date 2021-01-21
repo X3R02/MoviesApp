@@ -1,16 +1,24 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { getDimensions } from '../helpers/getDimensions';
+import { useOrientation } from '../hooks/useOrientation';
 
-const MovieCard = ({url, navigate, movie}) => {
+const MovieCard = ({url, movie, stateMovie}) => {
 
+    const navigation = useNavigation();
+    const orientation = useOrientation();
     const image = {
       uri: `https://image.tmdb.org/t/p/w500${url}`,
       cache: 'only-if-cached'
     };
 
     const navigateToMovie = () => {
-      navigate('Movie', movie);
+      console.log(orientation);
+      stateMovie?.setMovie(movie);
+      if(orientation === 'PORTRAIT') {
+        return navigation.navigate('Movie', movie);
+      }
     };
     
     return (

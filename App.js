@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MainScreen from './screens/MainScreen';
@@ -6,27 +6,41 @@ import MovieScreen from './screens/MovieScreen';
 import { Button } from 'react-native';
 import ConfigScreen from './screens/ConfigScreen';
 import { apiUrl } from './data/utils';
+import { useOrientation } from './hooks/useOrientation';
+import SlpitScreen from './screens/SlpitScreen';
 
 export default function App() {
 
   const Stack = createStackNavigator();
 
+  const orientation = useOrientation();
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen
-          name='Home'
-          component={MainScreen}
-          options={headerOptions}
-          initialParams={{
-            apiUrl: apiUrl
-          }}
-        />
-        <Stack.Screen
-          name='Movie'
-          component={MovieScreen}
-          options={headerMovieOptions}  
-        />
+        {
+          orientation === 'PORTRAIT' ? 
+          <Fragment>
+            <Stack.Screen
+              name='Home'
+              component={MainScreen}
+              options={headerOptions}
+              initialParams={{
+                apiUrl: apiUrl
+              }}
+            />
+            <Stack.Screen
+              name='Movie'
+              component={MovieScreen}
+              options={headerMovieOptions}  
+            />
+          </Fragment> :
+          <Stack.Screen
+            name='Movie and details'
+            component={SlpitScreen}
+            options={headerMovieOptions}
+          />
+        }
         <Stack.Screen
           name='Config'
           component={ConfigScreen}

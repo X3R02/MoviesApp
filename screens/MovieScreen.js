@@ -4,6 +4,12 @@ import { getDimensions } from '../helpers/getDimensions';
 
 const MovieScreen = ({route}) => {
 
+    if(!route?.params?.backdrop_path) {
+        return (
+            <Text>Nothing selected</Text>
+        );
+    }
+
     const params = route.params;
     const image = {
         uri: `https://image.tmdb.org/t/p/w500${params.backdrop_path}`,
