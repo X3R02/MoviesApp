@@ -1,7 +1,8 @@
 import React from 'react';
-import { ScrollView, Text, StyleSheet } from 'react-native';
+import { ScrollView, Text, View, StyleSheet } from 'react-native';
 import MovieCard from '../components/MovieCard';
 import { apiUrl } from '../data/utils';
+import { getDimensions } from '../helpers/getDimensions';
 import { useFetchMovies } from '../hooks/useFetchMovies';
 
 const MainScreen = ({navigate}) => {
@@ -10,28 +11,49 @@ const MainScreen = ({navigate}) => {
     console.log(movies);
 
     return (
-        <ScrollView style={styles.container}>
-            {
-                movies.loading ?
-                <Text>Por favor espere</Text> :
-                movies.data.results.map((movie) => (
-                    <MovieCard
-                        key={movie.id}
-                        url={movie.poster_path}
-                        original_title={movie.original_title}
-                        navigate={navigate}
-                    />
-                ))
-            }
+        <ScrollView>
+            <View style={styles.container}>
+                {
+                    movies.loading ?
+                    <Text>Por favor espere</Text> :
+                    movies.data.results.map((movie, i) => (
+                        <View style={styles.containerImages}>
+                            <MovieCard
+                                key={movie.id}
+                                url={movie.poster_path}
+                                navigate={navigate}
+                            />
+                            <MovieCard
+                                key={movie[i + 1]?.id}
+                                url={movie[i + 1]?.poster_path}
+                                navigate={navigate}
+                            />
+                        </View>
+                    ))
+                }
+            </View>
         </ScrollView>
     );
 };
 
+const dimensions = getDimensions();
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'row',
-    }
+  container: {
+    alignContent: 'stretch',
+    alignItems: 'stretch',
+    flex: 1,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    height: 'auto',
+    width: 'auto',
+  },
+  containerImages: {
+    // flex: 1,
+    // flexDirection: 'row',
+    // height: dimensions.height,
+    // width: dimensions.width,
+  }
 });
 
 export default MainScreen;

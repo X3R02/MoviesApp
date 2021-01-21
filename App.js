@@ -11,14 +11,14 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName='Home'>
         <Stack.Screen
-          name="Home"
+          name='Home'
           component={MainScreen}
           options={headerOptions}
         />
         <Stack.Screen
-          name="Movie"
+          name='Movie'
           component={MovieScreen}
           options={headerOptions}  
         />
@@ -35,8 +35,8 @@ const headerOptions = {
   headerRight: () => (
     <Button
       onPress={() => alert('This is a button!')}
-      title="opciones"
-      color="#1a1a1a"
+      title='opciones'
+      color='#1a1a1a'
     />
   ),
 };
