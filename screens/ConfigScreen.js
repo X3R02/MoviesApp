@@ -1,16 +1,27 @@
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import configData from '../data/config.json';
+import { config } from '../data/config';
 
 const ConfigScreen = () => {
 
+    const [configState, setConfigState] = useState(config);
+
     const handleChangeSelector = () => {
-        if(configdata.lang === 'en-US') {
-            configData.lang = 'es-MX';
-        } else if (configData.lang === 'es-MX') {
-            configData.lang = 'en-US';
+        if(config.selector === 'top_rated') {
+            config.selector = 'popular';
+        } else if (config.selector === 'popular') {
+            config.selector = 'top_rated';
         }
-        console.log(configData);
+        setConfigState({...config});
+    };
+
+    const handleLanguageChange = () => {
+        if(config.lang === 'en-US') {
+            config.lang = 'es-MX';
+        } else if (config.lang === 'es-MX') {
+            config.lang = 'en-US';
+        }
+        setConfigState({...config});
     };
 
     return (
@@ -18,9 +29,14 @@ const ConfigScreen = () => {
             <View style={styles.container}>
                 <TouchableOpacity
                     style={styles.button}
+                    onPress={handleLanguageChange}
                 >
                     <Text style={styles.textButton}>
-                        Language
+                        {
+                            config.lang === 'en-US' ?
+                            'Language' :
+                            'Lenguaje'
+                        }
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -28,7 +44,11 @@ const ConfigScreen = () => {
                     onPress={handleChangeSelector}
                 >
                     <Text style={styles.textButton}>
-                        Popular
+                        {
+                            (configState.selector === 'popular') ? 
+                            'Popular' :
+                            'Top rated'
+                        }
                     </Text>
                 </TouchableOpacity>
             </View>

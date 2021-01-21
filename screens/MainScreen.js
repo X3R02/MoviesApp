@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View, StyleSheet } from 'react-native';
 import MovieCard from '../components/MovieCard';
+import { config } from '../data/config';
 import { apiUrl } from '../data/utils';
 import { useFetchMovies } from '../hooks/useFetchMovies';
 
