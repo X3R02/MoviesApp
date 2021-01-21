@@ -2,12 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, Text, View, StyleSheet } from 'react-native';
 import MovieCard from '../components/MovieCard';
 import { config } from '../data/config';
-import { apiUrl } from '../data/utils';
 import { useFetchMovies } from '../hooks/useFetchMovies';
 
-const MainScreen = ({navigation: {navigate}}) => {
+const MainScreen = ({navigation, route}) => {
 
-    const [movies] = useFetchMovies(apiUrl);
+    const [movies] = useFetchMovies(route.params.apiUrl);
     const [results, setResults] = useState(movies.data);
     
     useEffect(() => {
@@ -29,7 +28,7 @@ const MainScreen = ({navigation: {navigate}}) => {
                             <MovieCard
                                 key={movie.id}
                                 url={movie.poster_path}
-                                navigate={navigate}
+                                navigate={navigation.navigate}
                                 movie={movie}
                             />
                         </View>

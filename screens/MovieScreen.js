@@ -2,7 +2,7 @@ import React from 'react';
 import { ImageBackground, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { getDimensions } from '../helpers/getDimensions';
 
-const MovieScreen = ({route, navigation}) => {
+const MovieScreen = ({route}) => {
 
     const params = route.params;
     const image = {

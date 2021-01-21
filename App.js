@@ -5,6 +5,7 @@ import MainScreen from './screens/MainScreen';
 import MovieScreen from './screens/MovieScreen';
 import { Button } from 'react-native';
 import ConfigScreen from './screens/ConfigScreen';
+import { apiUrl } from './data/utils';
 
 export default function App() {
 
@@ -17,6 +18,9 @@ export default function App() {
           name='Home'
           component={MainScreen}
           options={headerOptions}
+          initialParams={{
+            apiUrl: apiUrl
+          }}
         />
         <Stack.Screen
           name='Movie'

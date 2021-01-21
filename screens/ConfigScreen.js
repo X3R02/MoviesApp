@@ -1,9 +1,12 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { config } from '../data/config';
+import { apiUrl } from '../data/utils';
 
 const ConfigScreen = () => {
 
+    const navigation = useNavigation();
     const [configState, setConfigState] = useState(config);
 
     const handleChangeSelector = () => {
@@ -13,15 +16,21 @@ const ConfigScreen = () => {
             config.selector = 'top_rated';
         }
         setConfigState({...config});
+        navigation.navigate('Home', {
+            apiUrl: `https://api.themoviedb.org/3/movie/${config.selector}?api_key=9e6652e1580b3b6dcf46e8b7348b70c3&language=${config.lang}`
+        });
     };
 
     const handleLanguageChange = () => {
         if(config.lang === 'en-US') {
-            config.lang = 'es-MX';
-        } else if (config.lang === 'es-MX') {
+            config.lang = 'es';
+        } else if (config.lang === 'es') {
             config.lang = 'en-US';
         }
         setConfigState({...config});
+        navigation.navigate('Home', {
+            apiUrl: `https://api.themoviedb.org/3/movie/${config.selector}?api_key=9e6652e1580b3b6dcf46e8b7348b70c3&language=${config.lang}`
+        });
     };
 
     return (
