@@ -6,7 +6,7 @@ import { useFetchMovies } from '../hooks/useFetchMovies';
 
 const MainScreen = ({navigation: {navigate}}) => {
 
-    const [movies, setMovies] = useFetchMovies(apiUrl);
+    const [movies] = useFetchMovies(apiUrl);
     const [results, setResults] = useState(movies.data);
     
     useEffect(() => {

@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import MainScreen from './screens/MainScreen';
 import MovieScreen from './screens/MovieScreen';
 import { Button } from 'react-native';
+import ConfigScreen from './screens/ConfigScreen';
 
 export default function App() {
 
@@ -20,40 +21,43 @@ export default function App() {
         <Stack.Screen
           name='Movie'
           component={MovieScreen}
-          options={{
-            headerStyle: {
-              backgroundColor: '#bf42f5',
-              height: 200,
-            },
-            headerTintColor: '#fff',
-            headerRight: () => (
-              <Button
-                onPress={() => alert('This is a button!')}
-                title='opciones'
-                color='#bf42f5'
-              />
-            ),
-          }}  
+          options={headerMovieOptions}  
+        />
+        <Stack.Screen
+          name='Config'
+          component={ConfigScreen}
+          options={headerOptions}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-const headerOptions = {
+const headerOptions = ({navigation}) => ({
   headerStyle: {
     backgroundColor: '#1a1a1a',
   },
   headerTintColor: '#fff',
   headerRight: () => (
     <Button
-      onPress={() => alert('This is a button!')}
+      onPress={() => navigation.navigate('Config')}
       title='opciones'
       color='#1a1a1a'
     />
   ),
-};
+});
 
-const headerMovieOptions = {
-
-};
+const headerMovieOptions = ({ navigation }) => ({
+  headerStyle: {
+    backgroundColor: '#bf42f5',
+    height: 100,
+  },
+  headerTintColor: '#fff',
+  headerRight: () => (
+    <Button
+      onPress={() => navigation.navigate('Config')}
+      title='opciones'
+      color='#bf42f5'
+    />
+  ),
+});

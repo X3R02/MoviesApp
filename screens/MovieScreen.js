@@ -10,8 +10,6 @@ const MovieScreen = ({route, navigation}) => {
         cache: 'only-if-cached'
     };
 
-    console.log(params);
-
     return (
         <ScrollView>
             <View style={styles.container}>
