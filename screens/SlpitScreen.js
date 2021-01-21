@@ -50,14 +50,6 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column'
     },
-    screen2: {
-        width: (dimensions.height / 2),
-        flex: 1,
-        flexDirection: 'column',
-        position: 'absolute',
-        right: 0,
-        top: 0,
-    },
     title: {
       color: '#fff',
       fontSize: 32,
