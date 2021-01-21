@@ -25,10 +25,6 @@ const SlpitScreen = (props) => {
                 <MainScreen {...props}/>
             </View>
             <View style={styles.screen}>
-                <Image
-                    source={image}
-                    style={styles.image}
-                />
                 <Text style={styles.title}>
                     {movie?.original_title}
                 </Text>
@@ -50,44 +46,44 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     screen: {
-        width: dimensions.height / 2,
+        width: (dimensions.height / 2),
         flex: 1,
         flexDirection: 'column'
     },
-    image: {
+    screen2: {
+        width: (dimensions.height / 2),
         flex: 1,
-        justifyContent: 'center',
-        resizeMode: 'cover',
-        height: 240,
-        width: dimensions.width,
-        backgroundColor: '#bf42f5',
-      },
-      title: {
-        color: '#fff',
-        fontSize: 32,
-        height: 150,
-        width: dimensions.width,
-        backgroundColor: '#000000aa',
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        paddingTop: 60,
-      },
-      ratingText: {
-        color: '#fff',
-        fontSize: 20,
-        height: 90,
-        width: dimensions.width,
-        backgroundColor: '#000000aa',
-        textAlignVertical: 'center',
-        paddingLeft: 15,
-      },
-      sinopsis: {
-        color: '#717171',
-        fontSize: 20,
-        width: dimensions.width,
-        textAlignVertical: 'center',
-        padding: 25,
-      }
+        flexDirection: 'column',
+        position: 'absolute',
+        right: 0,
+        top: 0,
+    },
+    title: {
+      color: '#fff',
+      fontSize: 32,
+      height: 150,
+      width: dimensions.width / 2,
+      backgroundColor: '#000000aa',
+      textAlign: 'center',
+      textAlignVertical: 'center',
+      paddingTop: 60,
+    },
+    ratingText: {
+      color: '#fff',
+      fontSize: 20,
+      height: 90,
+      width: dimensions.width / 2,
+      backgroundColor: '#000000aa',
+      textAlignVertical: 'center',
+      paddingLeft: 15,
+    },
+    sinopsis: {
+      color: '#717171',
+      fontSize: 20,
+      width: dimensions.width / 2,
+      textAlignVertical: 'center',
+      padding: 25,
+    }
 });
 
 export default SlpitScreen;

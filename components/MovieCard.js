@@ -14,10 +14,13 @@ const MovieCard = ({url, movie, stateMovie}) => {
     };
 
     const navigateToMovie = () => {
-      console.log(orientation);
       stateMovie?.setMovie(movie);
       if(orientation === 'PORTRAIT') {
-        return navigation.navigate('Movie', movie);
+        try {
+          return navigation.navigate('Movie', movie);
+        } catch (err) {
+          return;
+        }
       }
     };
     
